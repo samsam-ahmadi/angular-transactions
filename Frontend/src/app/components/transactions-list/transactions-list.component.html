@@ -1,0 +1,22 @@
+<h1>Transaction List</h1>
+
+<section>
+  <div
+    class="transactions-list"
+    *ngFor="let transactionByDay of transactionsByDay | async; trackby: trackByTransactionsByDay"
+  >
+    <h3 class="transaction-header">
+      {{ transactionByDay.id | date }}
+    </h3>
+    <a
+      class="transaction"
+      *ngFor="let transaction of transactionByDay.transactions; trackby: trackByTransaction"
+      routerLink="/transactions/{{ transactionByDay.id }}/{{ transaction.id }}"
+    >
+      <p>
+        {{ transaction.otherParty?.name || 'Unknown' }}
+      </p>
+      <p>€ {{ transaction.amount | eur: transaction.currencyCode : transaction.currencyRate }}</p>
+    </a>
+  </div>
+</section>
