@@ -8,7 +8,7 @@ import { EurPipe } from '../../pipes/eur/eur.pipe';
 
 @Component({
   selector: 'app-transaction-details',
-  imports: [NgIf, AsyncPipe, RouterLink, EurPipe, DatePipe],
+  imports: [NgIf, AsyncPipe, RouterLink, EurPipe, DatePipe, NgClass],
   templateUrl: './transaction-details.component.html',
   styleUrl: './transaction-details.component.scss',
 })
@@ -24,5 +24,12 @@ export class TransactionDetailsComponent {
         this.transactionSrv.getTransaction(params.get('dayId'), params.get('id')),
       ),
     );
+  }
+
+  getAmountClass(total: number): Record<string, boolean> {
+    return {
+      negative: total < 0,
+      positive: total >= 0,
+    };
   }
 }

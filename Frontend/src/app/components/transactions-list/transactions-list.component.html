@@ -7,6 +7,9 @@
   >
     <h3 class="transaction-header">
       {{ transactionByDay.id | date }}
+      <span [ngClass]="getAmountClass(getTotal(transactionByDay))">
+        € {{ getTotal(transactionByDay) }}
+      </span>
     </h3>
     <a
       class="transaction"
@@ -16,7 +19,9 @@
       <p>
         {{ transaction.otherParty?.name || 'Unknown' }}
       </p>
-      <p>€ {{ transaction.amount | eur: transaction.currencyCode : transaction.currencyRate }}</p>
+      <p [ngClass]="getAmountClass(transaction.amount)">
+        € {{ transaction.amount | eur: transaction.currencyCode : transaction.currencyRate }}
+      </p>
     </a>
   </div>
 </section>
