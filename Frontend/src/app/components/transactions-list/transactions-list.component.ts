@@ -11,11 +11,16 @@ import { EurPipe } from '../../pipes/eur/eur.pipe';
   imports: [NgFor, AsyncPipe, DatePipe, RouterLink, EurPipe, NgClass],
   templateUrl: './transactions-list.component.html',
   styleUrl: './transactions-list.component.scss',
+  providers: [DatePipe, EurPipe],
 })
 export class TransactionsListComponent {
   readonly transactionsByDay!: Observable<TransactionsByDay[]>;
 
-  constructor(private transactionsSrv: TransactionsService) {
+  constructor(
+    private transactionsSrv: TransactionsService,
+    private datePipe: DatePipe,
+    private euroPipe: EurPipe,
+  ) {
     this.transactionsByDay = this.transactionsSrv.getTransactionsByDay();
   }
 
@@ -33,6 +38,27 @@ export class TransactionsListComponent {
       negative: total < 0,
       positive: total >= 0,
     };
+  }
+
+  buildAriaLabelForTransactionHeader(transactionsDay: TransactionsByDay): string {
+    const total = this.getTotal(transactionsDay);
+    const verb = total < 0 ? 'spent' : 'earned';
+    console.log(transactionsDay);
+    const date = this.datePipe.transform(transactionsDay.id, 'longDate');
+
+    return `For ${date} you ${verb} € ${Math.abs(total)}`;
+  }
+
+  transactionAriaLabel(transaction: Transaction): string {
+    const otherParty = transaction.otherParty?.name ?? 'Unknown party';
+    const sign = transaction.amount < 0 ? 'spent' : 'received';
+    const amount = this.euroPipe.transform(
+      transaction.amount,
+      transaction.currencyCode,
+      transaction.currencyRate,
+    );
+
+    return `Transaction with ${otherParty}. You ${sign} € ${amount}.`;
   }
 
   trackByTransactionsDay = (_: number, transactionDay: TransactionsByDay) => transactionDay.id;

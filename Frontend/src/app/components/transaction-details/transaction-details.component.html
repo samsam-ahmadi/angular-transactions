@@ -1,17 +1,19 @@
 <section *ngIf="transaction$ | async as transaction">
-  <button routerLink="/" class="back-btn">Back</button>
+  <a tabindex="0" routerLink="/" role="button" class="back-btn">Back</a>
   <article>
-    <h1 class="title">{{ transaction.otherParty?.name || 'Unknown' }}</h1>
+    <h1 tabindex="0" class="title" [attr.aria-label]="transaction.otherParty?.name || 'Unknown'">
+      {{ transaction.otherParty?.name || 'Unknown' }}
+    </h1>
     <ul class="details">
-      <li><strong>Date:</strong> {{ transaction.timestamp | date: 'medium' }}</li>
-      <li>
+      <li tabindex="0"><strong>Date:</strong> {{ transaction.timestamp | date: 'medium' }}</li>
+      <li tabindex="0">
         <strong>Amount:</strong>
         <span [ngClass]="getAmountClass(transaction.amount)">
           € {{ transaction.amount | eur: transaction.currencyCode : transaction.currencyRate }}
         </span>
       </li>
-      <li><strong>Description:</strong> {{ transaction.description }}</li>
-      <li><strong>IBAN:</strong>{{ transaction.otherParty?.iban }}</li>
+      <li tabindex="0"><strong>Description:</strong> {{ transaction.description }}</li>
+      <li tabindex="0"><strong>IBAN:</strong>{{ transaction.otherParty?.iban }}</li>
     </ul>
   </article>
 </section>

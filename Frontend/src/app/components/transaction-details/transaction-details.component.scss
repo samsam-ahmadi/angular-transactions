@@ -11,6 +11,8 @@ section {
   color: #fff;
   cursor: pointer;
   transition: background 0.15s;
+  display: inline-block;
+  text-decoration: none;
 
   &:hover {
     background: var(--clr-primary-hover);

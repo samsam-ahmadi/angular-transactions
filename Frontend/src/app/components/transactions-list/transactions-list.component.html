@@ -1,20 +1,27 @@
-<h1>Transaction List</h1>
+<h1 tabindex="0">Transaction List</h1>
 
 <section>
   <div
     class="transactions-list"
     *ngFor="let transactionByDay of transactionsByDay | async; trackBy: trackByTransactionsDay"
   >
-    <h3 class="transaction-header">
+    <h3
+      tabindex="0"
+      class="transaction-header"
+      [attr.aria-setsize]="transactionByDay.transactions.length"
+      [attr.aria-label]="buildAriaLabelForTransactionHeader(transactionByDay)"
+    >
       {{ transactionByDay.id | date }}
       <span [ngClass]="getAmountClass(getTotal(transactionByDay))">
         € {{ getTotal(transactionByDay) }}
       </span>
     </h3>
     <a
+      role="button"
       class="transaction"
       *ngFor="let transaction of transactionByDay.transactions; trackBy: trackByTransaction"
       routerLink="/transactions/{{ transactionByDay.id }}/{{ transaction.id }}"
+      [attr.aria-label]="transactionAriaLabel(transaction)"
     >
       <p>
         {{ transaction.otherParty?.name || 'Unknown' }}
