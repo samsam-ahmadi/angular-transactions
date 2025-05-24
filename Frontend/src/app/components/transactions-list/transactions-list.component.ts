@@ -19,7 +19,6 @@ export class TransactionsListComponent {
     this.transactionsByDay = this.transactionsSrv.getTransactionsByDay();
   }
 
-  trackByTransactionsByDay = (_: number, transactionByDay: TransactionsByDay) =>
-    transactionByDay.id;
+  trackByTransactionsDay = (_: number, transactionDay: TransactionsByDay) => transactionDay.id;
   trackByTransaction = (_: number, transaction: Transaction) => transaction.id;
 }

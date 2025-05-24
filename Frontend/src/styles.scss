@@ -1,36 +1,36 @@
 :root {
-    --clr-primary: hsl(219 100% 50%);
-    --clr-primary-hover: hsl(219 69% 57%);
-    --clr-grey-100: #c7c7c7;
-    --clr-grey-400: #424242;
+  --clr-primary: hsl(219 100% 50%);
+  --clr-primary-hover: hsl(219 69% 57%);
+  --clr-grey-100: #c7c7c7;
+  --clr-grey-400: #424242;
 
-    --radius: 0.5rem;
-    --space-1: 0.25rem;
-    --space-2: 0.5rem;
-    --space-3: 1rem;
-    --page-max-width: 800px;
+  --radius: 0.5rem;
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 1rem;
+  --page-max-width: 800px;
 }
 
 @layer reset {
-    :where(*, *::before, *::after) {
-        box-sizing: border-box;
-        margin: 0;
-        padding: 0;
-    }
+  :where(*, *::before, *::after) {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
 }
 
 @layer base {
-    html {
-        font-family: Arial;
-    }
+  html {
+    font-family: Arial;
+  }
 }
 
 @layer layout {
-    main {
-        max-width: var(--page-max-width);
-        width: 100%;
-        margin: auto;
-        margin-top: var(--space-3);
-        padding: var(--space-3);
-    }
+  main {
+    max-width: var(--page-max-width);
+    width: 100%;
+    margin: auto;
+    margin-top: var(--space-3);
+    padding: var(--space-3);
+  }
 }

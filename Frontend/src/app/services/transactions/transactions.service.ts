@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
-import { TransactionsByDay } from './transaction.model';
+import { Transaction, TransactionsByDay } from './transaction.model';
 import { environment } from '../../../environment';
 import { catchError, map, Observable, throwError } from 'rxjs';
 
@@ -20,5 +20,22 @@ export class TransactionsService {
 
   getTransactionsByDay(): Observable<TransactionsByDay[]> {
     return this.transactionByDay$;
+  }
+
+  getTransaction(dayId: string | null, id: string | null): Observable<Transaction | undefined> {
+    if (!dayId || !id) {
+      return throwError(() => new Error('Unable to find dayId or id'));
+    }
+
+    return this.transactionByDay$.pipe(
+      map(transactions =>
+        transactions
+          .find(transactionDay => transactionDay.id === dayId)
+          ?.transactions.find(transaction => transaction.id === +id),
+      ),
+      catchError(err =>
+        throwError(() => new Error('Unable to find transaction details', { cause: err })),
+      ),
+    );
   }
 }

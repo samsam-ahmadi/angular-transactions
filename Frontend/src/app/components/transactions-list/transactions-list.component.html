@@ -3,14 +3,14 @@
 <section>
   <div
     class="transactions-list"
-    *ngFor="let transactionByDay of transactionsByDay | async; trackby: trackByTransactionsByDay"
+    *ngFor="let transactionByDay of transactionsByDay | async; trackBy: trackByTransactionsDay"
   >
     <h3 class="transaction-header">
       {{ transactionByDay.id | date }}
     </h3>
     <a
       class="transaction"
-      *ngFor="let transaction of transactionByDay.transactions; trackby: trackByTransaction"
+      *ngFor="let transaction of transactionByDay.transactions; trackBy: trackByTransaction"
       routerLink="/transactions/{{ transactionByDay.id }}/{{ transaction.id }}"
     >
       <p>
