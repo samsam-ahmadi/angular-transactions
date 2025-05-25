@@ -1,9 +1,10 @@
 name: CI
 
 on:
-  workflow_run:
-    workflows: ["Security scans"]     # must equal the other file’s name:
-    types: [completed]       
+  workflow_dispatch:
+  # workflow_run:
+  #   workflows: ["Security scans"]     # must equal the other file’s name:
+  #   types: [completed]       
 
 env:
   NODE_VERSION: 20
@@ -14,7 +15,6 @@ permissions:
   packages: write
 
 jobs:
-
   frontend-quality:
     runs-on: ubuntu-latest
     defaults:
