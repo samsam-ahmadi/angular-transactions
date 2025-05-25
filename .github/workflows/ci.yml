@@ -31,6 +31,15 @@ jobs:
         run: npm run lint
       - name: Unit tests
         run: npm run test
+      - name: Build production
+        run: npm run build -- --configuration production
+      - name: Install static server
+        run: npm install -g http-server
+      - name: Run E2E tests against local prod build
+        run: |
+          http-server dist/frontend/browser -p 8080 &  # ⬅️ adjust path if needed
+          npx wait-on http://localhost:8080
+          npx cypress run --config baseUrl=http://localhost:8080   
 
 
   build-images:

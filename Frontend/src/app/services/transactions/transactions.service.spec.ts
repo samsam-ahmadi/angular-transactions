@@ -4,7 +4,7 @@ import { HttpTestingController, provideHttpClientTesting } from '@angular/common
 import { TransactionsService } from './transactions.service';
 import { Transaction, TransactionsByDay } from './transaction.model';
 import { provideHttpClient } from '@angular/common/http';
-import { environment } from '../../../environment';
+import { environment } from '../../../environments/environment';
 
 interface TransactionsResponse {
   days: TransactionsByDay[];
