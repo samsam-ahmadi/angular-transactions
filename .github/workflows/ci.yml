@@ -30,7 +30,7 @@ jobs:
       - name: ESLint
         run: npm run lint
       - name: Unit tests
-        run: npm test --sourceMap=false --browsers=ChromeHeadless --watch=false
+        run: npm run test
 
 
   build-images:
