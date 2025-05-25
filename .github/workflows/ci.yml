@@ -10,7 +10,7 @@ env:
   REGISTRY: ghcr.io/${{ github.repository }}
 
 permissions:
-  contents: read
+  contents: write
   packages: write
 
 jobs:
@@ -71,11 +71,11 @@ jobs:
       - run: |
           cd Frontend
           npm ci
-          npm run build -- --configuration production
+          npm run build -- --configuration production --base-href /angular-transactions/
       - uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: Frontend/dist/frontend
+          publish_dir: Frontend/dist/frontend/browser
 
   deploy-backend:
     needs: build-images
