@@ -42,7 +42,7 @@ describe('TransactionsService (stand-alone providers)', () => {
   });
 
   it('should return details of an existing transaction', () => {
-    service.getTransaction('2025-05-22', "1").subscribe(tx => {
+    service.getTransaction('2025-05-22', '1').subscribe(tx => {
       expect(tx?.amount).toBe(10);
     });
 
@@ -50,7 +50,7 @@ describe('TransactionsService (stand-alone providers)', () => {
   });
 
   it('should return undefined when the transaction is not found', () => {
-    service.getTransaction('2025-05-22', "999").subscribe(tx => {
+    service.getTransaction('2025-05-22', '999').subscribe(tx => {
       expect(tx).toBeUndefined();
     });
 
