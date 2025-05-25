@@ -2,9 +2,8 @@ name: CI
 
 on:
   workflow_run:
-    workflows: ["Security scans"]
-    types:
-      - completed
+    workflows: ["Security scans"]     # must equal the other file’s name:
+    types: [completed]       
 
 env:
   NODE_VERSION: 20
@@ -88,4 +87,3 @@ jobs:
         with:
           service-id: ${{ secrets.RENDER_SERVICE_ID }}
           api-key:    ${{ secrets.RENDER_API_KEY }}
-          wait-for-success: true
