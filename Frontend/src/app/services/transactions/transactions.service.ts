@@ -11,8 +11,8 @@ export class TransactionsService {
   private readonly http = inject(HttpClient);
 
   private readonly transactionByDay$ = this.http
-    .get<{ days: TransactionsByDay[] }>(`${environment.apiUrl}/transactions`,{
-      headers: new HttpHeaders({ 'Cache-Control': 'no-cache' })
+    .get<{ days: TransactionsByDay[] }>(`${environment.apiUrl}/transactions`, {
+      headers: new HttpHeaders({ 'Cache-Control': 'no-cache' }),
     })
     .pipe(
       map(res => res.days),
