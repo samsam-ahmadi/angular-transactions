@@ -4,7 +4,7 @@ import { ActivatedRoute, convertToParamMap, provideRouter, Routes } from '@angul
 
 import { TransactionDetailsComponent } from './transaction-details.component';
 import { TransactionsService } from '../../services/transactions/transactions.service';
-import { environment } from '../../../environment';
+import { environment } from '../../../environments/environment';
 import { of } from 'rxjs';
 import { provideHttpClient } from '@angular/common/http';
 

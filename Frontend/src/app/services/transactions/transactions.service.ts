@@ -1,7 +1,7 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { Transaction, TransactionsByDay } from './transaction.model';
-import { environment } from '../../../environment';
+import { environment } from '../../../environments/environment';
 import { catchError, map, Observable, throwError } from 'rxjs';
 
 @Injectable({
@@ -11,7 +11,9 @@ export class TransactionsService {
   private readonly http = inject(HttpClient);
 
   private readonly transactionByDay$ = this.http
-    .get<{ days: TransactionsByDay[] }>(`${environment.apiUrl}/transactions`)
+    .get<{ days: TransactionsByDay[] }>(`${environment.apiUrl}/transactions`,{
+      headers: new HttpHeaders({ 'Cache-Control': 'no-cache' })
+    })
     .pipe(
       map(res => res.days),
       map(transactions => transactions.sort((a, b) => b.id.localeCompare(a.id))),

@@ -7,7 +7,7 @@ import { TransactionsListComponent } from './transactions-list.component'; // st
 import { provideHttpClient } from '@angular/common/http';
 import { Transaction, TransactionsByDay } from '../../services/transactions/transaction.model';
 import { TransactionsService } from '../../services/transactions/transactions.service';
-import { environment } from '../../../environment';
+import { environment } from '../../../environments/environment';
 
 const mockApiResponse: { days: TransactionsByDay[] } = {
   days: [
