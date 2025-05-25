@@ -1,0 +1,44 @@
+name: Security scans
+
+on:
+  push:
+    branches: [main,dev]
+  pull_request:
+
+env:
+  NODE_VERSION: 20
+
+permissions:
+  contents: read
+
+jobs:
+
+  # sonar:
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - uses: actions/checkout@v4
+  #       with:
+  #         fetch-depth: 0
+  #     - name: SonarCloud scan
+  #       uses: SonarSource/sonarqube-scan-action@v2
+  #       with:
+  #         projectBaseDir: .
+  #         args: >
+  #           -Dsonar.projectKey=${{ secrets.SONAR_PROJECT_KEY }}
+  #           -Dsonar.organization=${{ secrets.SONAR_ORGANIZATION }}
+  #           -Dsonar.host.url=https://sonarcloud.io
+  #       env:
+  #         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+
+  snyk:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: snyk/actions/setup@master     
+      - name: Snyk OS scan
+        uses: snyk/actions/node@master
+        with:
+          command: test
+          args: --all-projects --severity-threshold=high
+        env:
+          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}

@@ -25,7 +25,7 @@ const mockApiResponse: { days: TransactionsByDay[] } = {
             name: 'Mister XX',
             iban: 'NL00RABO0123456789',
           },
-        },
+        } as Transaction,
         {
           id: 2,
           timestamp: '2022-11-08T12:45:47.123Z',

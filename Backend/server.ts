@@ -4,7 +4,10 @@ const cors = require('cors');
 const app = express();
 
 const allowedOrigins = [
-  'http://localhost:4200',
+  'http://localhost:8090',
+  'http://127.0.0.1:8090',
+  'https://angular-transactions.onrender.com/api/transactions',
+  'https://samsam-ahmadi.github.io/angular-transactions',
 ]
 
 app.use(cors({

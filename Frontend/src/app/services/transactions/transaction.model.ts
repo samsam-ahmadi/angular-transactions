@@ -1,4 +1,7 @@
-export type CurrencyCode = 'EUR' | 'USD';
+export enum CurrencyCode {
+  EUR = 'EUR',
+  USD = 'USD',
+}
 export interface Transaction {
   id: number;
   timestamp: string;
