@@ -8,13 +8,14 @@ const allowedOrigins = [
   'http://127.0.0.1:8090',
   'https://angular-transactions.onrender.com/api/transactions',
   'https://samsam-ahmadi.github.io/angular-transactions',
+  'https://killthejs.com',
 ]
 
 app.use(cors({
   origin: function (origin: any, callback: any) {
 
     if (!origin) return callback(null, true);
-    if (allowedOrigins.indexOf(origin) === -1) {
+    if (!allowedOrigins.includes(origin)) {
       var msg = 'The CORS policy for this site does not ' +
         'allow access from the specified Origin.';
       return callback(new Error(msg), false);
