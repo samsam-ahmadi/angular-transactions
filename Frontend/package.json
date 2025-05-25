@@ -6,7 +6,7 @@
     "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test",
+    "test": "ng test --watch=false --source-map=false --browsers=ChromeHeadless",
     "lint": "ng lint",
     "lint:fix": "ng lint --fix",
     "format": "prettier \"**/*.{ts,html,scss}\" --write",
